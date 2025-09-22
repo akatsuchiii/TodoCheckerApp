@@ -1,0 +1,60 @@
+﻿#foo-table {
+    width: 30%;
+    height: 50%;
+        text-align: center;
+}
+
+    #foo-table td {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 0.2px solid gray;
+        text-align: center;
+    }
+
+    #foo-table th {
+        text-align: center;
+    }
+
+.main-content{
+    padding: 0px 10px 0px 10px;
+}
+
+
+.bottom-container {
+    display: flex;
+    margin: 4px;
+    float: right;
+}
+
+    .bottom-container button {
+        padding: 6px;
+        padding-left: 14px;
+        padding-right: 14px;
+        margin: 5px;
+    }
+
+.reg-btn:hover {
+    transform: translateY(-1.5px);
+}
+
+.upd-btn:hover {
+    transform: translateY(-1.5px);
+}
+
+.dlt-btn:hover {
+    transform: translateY(-1.5px);
+}
+
+/*datatable要素部*/
+.dt-paging {
+    margin: auto !important;
+}
+.dt-length label {
+    display: none;
+}
+
+
+#foo-table tbody tr:hover {
+    background-color: lightslategray;
+    cursor: pointer;
+}

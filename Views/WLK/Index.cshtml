@@ -1,0 +1,55 @@
+﻿@model TodoCheckerApp.ViewModels.WLK.WalkmanViewModel;
+@using System.Windows;
+
+@{
+    Layout = "~/Views/Shared/_Layout-header.cshtml";
+    ViewBag.Title = "";
+}
+
+@section Css {
+    <link rel="stylesheet" href="@Url.Content("~/css/WLK/Walkman.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/datatables/datatables.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap/bootstrap.css")" />
+    <link rel="stylesheet" href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" />
+
+}
+
+@* @using (Html.BeginForm("Index", "Walkman", FormMethod.Post, new { @id = "Walkman" })) *@
+@* { *@
+@Html.AntiForgeryToken()
+
+<div class="table-contents">
+    <table id="foo-table" class="table table-bordered" style="width: 100%; table-layout: fixed;">
+        <thead>
+            <tr>
+                <th></th>
+                <th>タイトル</th>
+                <th>アーティスト</th>
+                <th>アルバム</th>
+                <th>トラック</th>
+                <th>リリース</th>
+                <th>ジャンル</th>
+                <th>国名</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<div class="bottom-container">
+    <div><button type="button" onclick="newRow()" class="newRow">新規作成</button></div>
+    <div><button type="button" id="regBtn" class="reg-btn" onclick="clickRegBtn()">登録</button></div>
+    <div><button type="button" id="updBtn" class="upd-btn"onclick="clickUpdBtn()">更新</button></div>
+    <div><button type="button" id="dltBtn" class="dlt-btn">削除</button></div>
+</div>
+@* } *@
+
+@section Script {
+    <script src="@Url.Content("~/js/jquery-3.7.1.min.js")"></script>
+    <script src="@Url.Content("~/js/datatables/datatables.min.js")"></script>
+    <script src="@Url.Content("~/js/bootstrap/bootstrap.min.js")"></script>
+    <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js" defer></script>
+
+    <script src="@Url.Content("~/js/WLK/Walkman.js")"></script>
+}

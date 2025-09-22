@@ -1,0 +1,71 @@
+﻿@model TodoCheckerApp.ViewModels.MenuViewModel;
+@using System.Windows;
+
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="@Url.Content("~/css/LGN/Login.css")" />
+</head>
+<body>
+    @* ヘッダー部分 *@
+    <div class="layout-header">
+        @* ヘッダー部：左辺 *@
+        <div class="header-left">
+            <img class="header-logo" src="@Url.Content("~/Files/img/jidaraku_logo.png")" />
+        </div>
+        @* ヘッダー部：右辺 *@
+        <div class="header-right">
+            <button class="header-home" onclick="clickHomeButton()">
+                <img class="header-home" src="@Url.Content("~/Files/img/home-image.png")" />
+            </button>
+            <button class="header-bell" onclick="clickRemindButton()">
+                <img class="header-bell" src="@Url.Content("~/Files/img/bell-image.png")" />
+            </button>
+            <button class="header-menu" onclick="clickMenuButton()">
+                <img class="header-menu" src="@Url.Content("~/Files/img/menu-image.png")" />
+            </button>
+        </div>
+    </div>
+
+
+
+
+    @* ログイン・新規登録 コンテナ部分 *@
+    <div class="main-container">
+        <div class="login-container">
+            <h2> ログイン</h2>
+
+            <form method="post" asp-action="Login" asp-controller="Account">
+                <div class="header-title">
+                    <label>ユーザー名</label>
+                    <input type="text" name="username" />
+                </div>
+                <div>
+                    <label>パスワード</label>
+                    <input type="password" name="password" />
+                </div>
+                <button type="submit">ログイン</button>
+            </form>
+
+
+            @if (ViewBag.Error != null)
+            {
+                <p class="error-message" style="color:red">@ViewBag.Error</p>
+            }
+
+
+
+        </div>
+        <div class="new-reg-container">
+
+            <div class="new-reg-message">
+                <h2>新規会員の登録</h2>
+            </div>
+            <div class="new-reg-button">
+                <buttonn type="submit">新規会員登録</buttonn>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

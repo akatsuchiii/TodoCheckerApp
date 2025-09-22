@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>自堕落チェッカー - @ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+
+    <link rel="stylesheet" href="@Url.Content("~/css/_layout_header.css")" />
+    @RenderSection("Css", required: false)
+</head>
+
+
+
+
+
+<body>
+    @* 共通ヘッダー *@
+    <div class="layout-header">
+        @* ヘッダー部：左辺 *@
+        <div class="header-left">
+            <img class="header-logo" src="@Url.Content("~/Files/img/jidaraku_logo.png")" />
+            <h1 class="page-title">@ViewBag.Title</h1>
+        </div>
+        @* ヘッダー部：右辺 *@
+        <div class="header-right">
+            <button class="header-home" onclick="clickHomeButton()">
+                <img class="header-home" src="@Url.Content("~/Files/img/home-image.png")" />
+            </button>
+            <button class="header-bell" onclick="clickRemindButton()">
+                <img class="header-bell" src="@Url.Content("~/Files/img/bell-image.png")" />
+            </button>
+            <button class="header-menu" onclick="clickMenuButton()">
+                <img class="header-menu" src="@Url.Content("~/Files/img/menu-image.png")" />
+            </button>
+        </div>
+    </div>
+
+    <div class="tab-container">
+        <button type="button" class="tab active" onclick="location.href='@Url.Action("Index", "Walkman")'">walkman</button>
+        <button type="button" class="tab">Todo</button>
+        <button type="button" class="tab">PCローカル</button>
+        <button type="button" class="tab">未実装</button>
+        <button type="button" class="tab">未実装</button>
+    </div>
+
+
+    @* ここにビューが差し込まれる *@
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    @RenderSection("Script", required: false)
+
+</body>
+</html>
