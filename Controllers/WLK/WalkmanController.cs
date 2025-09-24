@@ -21,8 +21,69 @@ namespace TodoCheckerApp.Controllers
 
         public IActionResult Index()
         {
-            return View("~/Views/WLK/Index.cshtml");
+            // DBからWalkman一覧を取得してViewModelにセット
+            var vm = new WalkmanViewModel
+            {
+                ViewList = _db.Walkman
+                    .Select(x => new WalkmanRowDto
+                    {
+                        title = x.title,
+                        artist = x.artist,
+                        album = x.album,
+                        track = x.track,
+                        release = x.release,
+                        genre = x.genre,
+                        country = x.country
+                    }).ToList()
+            };
+
+            return View("~/Views/WLK/Index.cshtml", vm);
         }
+        [HttpPost]
+        public IActionResult UpdateRows([FromBody] List<WalkmanRowDto> rows)
+        {
+            if (rows == null || rows.Count == 0)
+                return BadRequest(new { success = false, message = "更新するデータがありません" });
+
+            foreach (var row in rows)
+            {
+                var entity = _db.Walkman.FirstOrDefault(x => x.title == row.title);
+                if (entity != null)
+                {
+                    entity.artist = row.artist;
+                    entity.album = row.album;
+                    entity.track = row.track;
+                    entity.release = row.release;
+                    entity.genre = row.genre;
+                    entity.country = row.country;
+                }
+            }
+
+            _db.SaveChanges();
+            return Ok(new { success = true, message = "更新成功" });
+        }
+
+
+        [HttpPost]
+        public IActionResult DeleteRows([FromBody] List<WalkmanRowDto> rows)
+        {
+            if (rows == null || rows.Count == 0)
+                return BadRequest(new { success = false, message = "削除するデータがありません" });
+
+            foreach (var row in rows)
+            {
+                var entity = _db.Walkman.FirstOrDefault(x => x.title == row.title);
+                if (entity != null)
+                {
+                    _db.Walkman.Remove(entity);
+                }
+            }
+
+            _db.SaveChanges();
+            return Ok(new { success = true, message = "削除成功" });
+        }
+
+
 
         [HttpGet]
         public IActionResult GetWalkmanData()

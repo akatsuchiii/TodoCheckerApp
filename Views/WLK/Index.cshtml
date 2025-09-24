@@ -1,4 +1,4 @@
-﻿@model TodoCheckerApp.ViewModels.WLK.WalkmanViewModel;
+﻿@model TodoCheckerApp.ViewModels.WLK.WalkmanViewModel
 @using System.Windows;
 
 @{
@@ -19,10 +19,9 @@
 @Html.AntiForgeryToken()
 
 <div class="table-contents">
-    <table id="foo-table" class="table table-bordered" style="width: 100%; table-layout: fixed;">
+    <table id="foo-table" class="table table-bordered" style="width:100%; table-layout:fixed;">
         <thead>
             <tr>
-                <th></th>
                 <th>タイトル</th>
                 <th>アーティスト</th>
                 <th>アルバム</th>
@@ -32,16 +31,28 @@
                 <th>国名</th>
             </tr>
         </thead>
-
         <tbody>
+            @foreach (var row in Model.ViewList)
+            {
+                <tr>
+                    <td>@row.title</td>
+                    <td>@row.artist</td>
+                    <td>@row.album</td>
+                    <td>@row.track</td>
+                    <td>@row.release?.ToString("yyyy-MM-dd")</td>
+                    <td>@row.genre</td>
+                    <td>@row.country</td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
+
 <div class="bottom-container">
-    <div><button type="button" onclick="newRow()" class="newRow">新規作成</button></div>
-    <div><button type="button" id="regBtn" class="reg-btn" onclick="clickRegBtn()">登録</button></div>
-    <div><button type="button" id="updBtn" class="upd-btn"onclick="clickUpdBtn()">更新</button></div>
-    <div><button type="button" id="dltBtn" class="dlt-btn">削除</button></div>
+    <button type="button" onclick="newRow()">新規作成</button>
+    <button type="button" onclick="clickRegBtn()">登録</button>
+    <button type="button" onclick="clickUpdBtn()">更新</button>
+    <button type="button" onclick="clickDltBtn()">削除</button>
 </div>
 @* } *@
 
